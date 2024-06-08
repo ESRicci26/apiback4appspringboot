@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<title>Formulário de Cliente</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+	<div align="left">
+
+		<h1 th:text="${client.id == null} ? 'Adicionar Cliente' : 'Editar Cliente'"></h1>
+		<form th:action="@{/clients}" th:object="${client}" method="post">
+
+			<table border="0" cellpadding="10">
+
+				<!--<input type="hidden" th:field="*{id}" /> -->
+				<div>
+					<tr>
+						<td>ID-Chave Valor:</td>
+						<td>
+							<input type="text" th:field="*{id}" readonly="readonly" />
+						</td>
+					</tr>
+				</div>
+
+				<tr>
+					<td>Nome Completo do Cliente:</td>
+					<td>
+						<input type="text" name="nomecliente" id="nomecliente" th:field="*{name}" />
+					</td>
+					<td>Salário:</td>
+					<td>
+						<input type="text" class="form-control" onkeypress="$(this).mask('##0.00', {reverse: true})"
+						th:field="*{price}" placeholder="Informa 0.00 ou Salário" required />
+					</td>
+				</tr>
+
+				<tr>
+					<td>Estoque:</td>
+					<td>
+						<input type="number" th:field="*{stock}" /><br />
+					</td>
+				</tr>
+
+				<tr>
+					<td>V/F:</td>
+					<td>
+						<input type="checkbox" th:field="*{selling}" /><br />
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<button type="submit">Salvar</button>
+					</td>
+				</tr>
+
+			</table>
+
+		</form>
+		<a th:href="@{/clients/contatos}">Voltar</a>
+
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clientes</title>
+</head>
+<body>
+<h1>Lista de Clientes API Back4App</h1>
+<a th:href="@{/clients/new}">Adicionar Novo Cliente</a>
+<a th:href="@{/clients/pdf}">Gerar Relatório PDF</a>
+<a th:href="@{/clients/csv}">Gerar Relatório CSV</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Salário</th>
+        <th>Estoque</th>
+        <th>V/F</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="client : ${clients}">
+        <td th:text="${client.id}"></td>
+        <td th:text="${client.name}"></td>
+        <td th:text="${client.price}"></td>
+        <td th:text="${client.stock}"></td>
+        <td th:text="${client.selling}"></td>
+        <td>
+            <a th:href="@{/clients/edit/{id}(id=${client.id})}">Editar</a>
+            <a th:href="@{/clients/delete/{id}(id=${client.id})}">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
